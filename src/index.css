@@ -287,17 +287,6 @@ nav .nav-contact:hover {
   gap:8px;
 }
 
-.visual-topline button {
-  background:#0c1a11d9;
-  border:1px solid #37503e;
-  color:#c2dbca;
-  border-radius:4px;
-  padding:7px;
-  cursor:pointer;
-  letter-spacing:0;
-  font-size:10px;
-}
-
 .visual-caption>span:last-child {
   font-size:24px;
   color:var(--accent);

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./index.css";
 
 const skills = ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Prisma", "SQL", "WordPress"];
@@ -8,13 +8,12 @@ const projects = [
   { title: "TaskFlow App", category: "Web app", description: "Un concepto de gestor de tareas con tableros visuales y un flujo de trabajo simple y organizado.", tags: ["Node.js", "NestJS", "Prisma"], type: "tasks" },
 ];
 
-function MatrixRain({ paused }) {
+function MatrixRain() {
   const canvasRef = useRef(null);
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     if (!context) return;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let width = 0, height = 0, drops = [], frame = 0, previous = 0;
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789<>/{}[]();=+-*";
     function draw() {
@@ -44,19 +43,17 @@ function MatrixRain({ paused }) {
     }
     function sync() {
       cancelAnimationFrame(frame);
-      if (!paused && !reducedMotion.matches && !document.hidden) frame = requestAnimationFrame(animate);
+      if (!document.hidden) frame = requestAnimationFrame(animate);
     }
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
     resize(); sync();
-    reducedMotion.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);
     return () => {
       cancelAnimationFrame(frame); observer.disconnect();
-      reducedMotion.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, [paused]);
+  }, []);
   return <canvas ref={canvasRef} className="matrix-canvas" aria-hidden="true" />;
 }
 
@@ -72,7 +69,6 @@ function ProjectPreview({ type }) {
 }
 
 function App() {
-  const [paused, setPaused] = useState(false);
   return (
     <div className="portfolio-shell" id="top">
       <a href="#main" className="skip-link">Saltar al contenido</a>
@@ -91,8 +87,8 @@ function App() {
             <div className="hero-footnote"><span>01 / PRESENTACIÓN</span><a href="#projects">Seguí explorando ↓</a></div>
           </div>
           <div className="hero-visual">
-            <MatrixRain paused={paused} />
-            <div className="visual-topline"><span><i /> THE CODE BEHIND THE IDEAS</span><button onClick={() => setPaused(!paused)} aria-pressed={paused} aria-label={paused ? "Reanudar animación Matrix" : "Pausar animación Matrix"}>{paused ? "Reanudar ▷" : "Pausar Ⅱ"}</button></div>
+            <MatrixRain />
+            <div className="visual-topline"><span><i /> THE CODE BEHIND THE IDEAS</span></div>
             <div className="terminal">
               <div className="terminal-bar"><div className="window-dots"><i /><i /><i /></div><span>developer.ts</span><span>⌘</span></div>
               <div className="terminal-code"><p><span className="code-muted">// Convirtiendo ideas en productos</span></p><p><span className="code-purple">const</span> developer = {'{'}</p><p>  name: <span className="code-green">"Andres Meier"</span>,</p><p>  role: <span className="code-green">"Full Stack Developer"</span>,</p><p>  stack: [<span className="code-green">"React"</span>, <span className="code-green">"Node.js"</span>],</p><p>  focus: <span className="code-green">"Build with purpose"</span></p><p>{'};'}</p><br /><p><span className="code-purple">await</span> developer.<span className="code-green">build</span>(nextIdea);</p></div>
