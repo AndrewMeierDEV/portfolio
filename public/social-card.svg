@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#090c0a"/>
+  <rect x="32" y="32" width="1136" height="566" rx="24" fill="#0d1510" stroke="#34473a" stroke-width="2"/>
+  <path d="M810 90v450M860 90v450M910 90v450M960 90v450M1010 90v450M1060 90v450" stroke="#193723" stroke-width="2"/>
+  <g font-family="DejaVu Sans, sans-serif">
+    <text x="85" y="114" font-size="23" letter-spacing="4" fill="#a3f7bf">FULL STACK DEVELOPER</text>
+    <text x="80" y="255" font-size="108" font-weight="bold" fill="#edeee9">Andres</text>
+    <text x="80" y="365" font-size="108" font-weight="bold" fill="#a3f7bf">Meier.</text>
+    <text x="85" y="438" font-size="30" fill="#edeee9">De una idea a algo que funciona.</text>
+    <text x="85" y="531" font-size="21" fill="#929c94">React · TypeScript · Node.js</text>
+    <text x="850" y="347" font-size="88" fill="#a3f7bf">&lt;/&gt;</text>
+  </g>
+</svg>
